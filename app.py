@@ -38,7 +38,7 @@ def mark_sent_today(today):
 
 # --- Run email scheduler logic ---
 day, time, today_str = get_ist_time()
-if day == "Tuesday" and time == "23:40":
+if day == "Wednesday" and time == "12:19":
     if not already_sent_today(today_str):
         send_mails.main()
         mark_sent_today(today_str)
