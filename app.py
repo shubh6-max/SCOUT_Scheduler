@@ -5,12 +5,21 @@ from openpyxl import load_workbook
 import os
 import pytz
 import send_mails  # must contain send_mails.main()
+from io import BytesIO
+import requests
+
 
 # --- Config ---
 EXCEL_FILE = "https://themathcompany.sharepoint.com/sites/scout/_layouts/15/guestaccess.aspx?share=Easz2VQSTFtIvnldo0onHUIBssWNAxO_HPLhwRT8L2sS-w&e=01roDe"
 SHEET_NAME = "Sheet1"
 SENT_LOG_FILE = "last_email_sent.txt"
 IST = pytz.timezone("Asia/Kolkata")
+
+# Fetch file content
+response = requests.get(EXCEL_FILE)
+
+# Raise error if request failed
+response.raise_for_status()
 
 # --- Scheduler logic ---
 def get_ist_time():
@@ -40,7 +49,7 @@ st.set_page_config(page_title="Warm Outreach Form", layout="centered")
 # --- Load Excel ---
 @st.cache_data
 def load_data():
-    return pd.read_excel(EXCEL_FILE, sheet_name=SHEET_NAME)
+    return pd.read_excel(BytesIO(response.content), sheet_name=SHEET_NAME)
 
 df = load_data()
 
