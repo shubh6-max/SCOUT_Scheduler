@@ -7,7 +7,7 @@ import pytz
 import send_mails  # must contain send_mails.main()
 
 # --- Config ---
-EXCEL_FILE = "leads_with_status.xlsx"
+EXCEL_FILE = "https://themathcompany.sharepoint.com/sites/scout/_layouts/15/guestaccess.aspx?share=Easz2VQSTFtIvnldo0onHUIBssWNAxO_HPLhwRT8L2sS-w&e=01roDe"
 SHEET_NAME = "Sheet1"
 SENT_LOG_FILE = "last_email_sent.txt"
 IST = pytz.timezone("Asia/Kolkata")
